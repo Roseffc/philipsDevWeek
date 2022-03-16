@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Ocorrencia } from '../model/ocorrencia';
 
 
@@ -8,11 +9,13 @@ import { Ocorrencia } from '../model/ocorrencia';
 })
 export class OcorrenciaService {
 
-  constructor() { }
+  constructor(
+    private http:HttpClient
+  ) { }
 
-  listOcorrencias(): Ocorrencia[]{
-    return [
-      { id: 1, regiao_id: 2, mes: 5, faixa_id: 1, qnt_exames:44,regiao:'sudeste', total_exames:10 }
-    ];
+  listOcorrencias(): Observable<Ocorrencia[]>{
+    const url = '/api/ocorrencias';
+    return this.http.get<Ocorrencia[]>(url)
   }
 }
+  

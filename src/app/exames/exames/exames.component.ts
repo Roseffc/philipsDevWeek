@@ -9,7 +9,7 @@ import { RegiaoService } from '../service/regiao.service';
 @Component({
   selector: 'app-exames',
   templateUrl: './exames.component.html',
-  styleUrls:['./exames.component.scss']
+    styleUrls:['./exames.component.scss']
 })
 
 export class ExamesComponent implements OnInit {
@@ -26,8 +26,8 @@ export class ExamesComponent implements OnInit {
 
   ngOnInit(): void {
     this.regioesService.listRegioes().subscribe(regioes => {this.regioes = regioes});
-    this.ocorrencia_exame = this.ocorrenciaService.listOcorrencias(); 
-    // this.faixaetarias = this.faixaEtariaService.listFaixaEtaria();
+    this.ocorrenciaService.listOcorrencias().subscribe(ocorrencias => {this.ocorrencia_exame= ocorrencias}); 
+    this.faixaEtariaService.listFaixaEtaria().subscribe(faixaetarias => {this.faixaetarias=faixaetarias});
   }
 
   
